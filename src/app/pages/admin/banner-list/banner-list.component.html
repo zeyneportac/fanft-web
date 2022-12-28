@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="col-md-4 col-sm-12 add-button">
+    <button
+      type="button"
+      (click)="openAddBannerModal()"
+      class="btn btn-sm btn-outline-success"
+    >
+      <i class="fas fa-plus"></i> {{ "Add Project" | translate }}
+    </button>
+  </div>
+  <div class="col-md-3 col-sm-12 ml-auto">
+    <mat-form-field>
+      <mat-label>{{ "Search" | translate }}</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="searchText"
+        placeholder="{{ 'Enter Words for Search' | translate }}"
+        name="SearchText"
+      />
+      <a type="button" matSuffix [attr.aria-label]="'Search'">
+        <mat-icon>search</mat-icon>
+      </a>
+    </mat-form-field>
+  </div>
+</div>
+<div class="card">
+  <div class="card-body table-responsive p-0">
+    <table class="table table-hover table-striped">
+      <thead>
+        <tr>
+          <th>{{ "Banner No" | translate }}</th>
+          <th>{{ "Banner Description" | translate }}</th>
+          <th>{{ "Banner Size" | translate }}</th>
+          <th>{{ "Banner Date" | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let banner of banners | filter : searchText">
+          <td>{{ banner.Id }}</td>
+          <td>{{ banner.Description }}</td>
+          <td>{{ banner.Size }}</td>
+          <td>{{ banner.Date }}</td>
+          <td class="list-button text-right">
+            <a mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon class="list-menu">more_vert</mat-icon>
+            </a>
+            <mat-menu #menu="matMenu">
+              <a mat-menu-item (click)="openAddBannerModal(banner.Id)">
+                <mat-icon>edit</mat-icon>
+                <span>{{ "Edit" | translate }}</span>
+              </a>
+              <a mat-menu-item (click)="bannerDelete(banner.Id)">
+                <mat-icon>delete</mat-icon>
+                <span>{{ "Delete" | translate }}</span>
+              </a>
+            </mat-menu>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
