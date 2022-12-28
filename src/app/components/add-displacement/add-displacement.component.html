@@ -1,0 +1,70 @@
+<div ma-dialog-title class="institution-dialog__header">
+  <div class="modal-header">
+    <h2>{{ "Add Reference" | translate }}</h2>
+    <a [mat-dialog-close]="false" class="close-icon">
+      <mat-icon>close</mat-icon>
+    </a>
+  </div>
+</div>
+
+<mat-dialog-content class="mat-typography institution-dialog__content">
+  <form #referenceForm="ngForm" (ngSubmit)="onSave(referenceForm)">
+    <div class="form-group mt-2">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>{{ "Name" | translate }}</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="{{ 'Enter City Name' | translate }}"
+          pattern="^[A-Za-zÇçÖöŞşÜüĞğİı ]+$"
+          name="CityName"
+          #CityName="ngModel"
+          [(ngModel)]="displacement.CityName"
+          required
+        />
+        <mat-error *ngIf="CityName.invalid && CityName.touched">
+          {{ "City Name field must be filled" | translate }}</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div class="form-group mt-2">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>{{ "Description" | translate }}</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="{{ 'Enter Description' | translate }}"
+          pattern="^[A-Za-zÇçÖöŞşÜüĞğİı ]+$"
+          description="Description"
+          #Description="ngModel"
+          [(ngModel)]="displacement.Description"
+          required
+        />
+        <mat-error *ngIf="Description.invalid && Description.touched">
+          {{ "Description field must be filled" | translate }}</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>{{ " The date of the displacement" | translate }}</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          name="Date"
+          #Date="ngModel"
+          [(ngModel)]="displacement.Date"
+          required
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="Date.invalid && Date.touched">
+          {{ "Fill in the date of the displacement" | translate }}</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <button type="submit" class="btn btn-info w-100">
+      {{ "Save" | translate }}
+    </button>
+  </form>
+</mat-dialog-content>
