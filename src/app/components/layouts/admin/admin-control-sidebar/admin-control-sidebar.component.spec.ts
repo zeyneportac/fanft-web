@@ -1,0 +1,23 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { AdminControlSidebarComponent } from './admin-control-sidebar.component';
+
+describe('AdminControlSidebarComponent', () => {
+  let component: AdminControlSidebarComponent;
+  let fixture: ComponentFixture<AdminControlSidebarComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ AdminControlSidebarComponent ]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(AdminControlSidebarComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
